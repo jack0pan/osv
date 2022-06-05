@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "github.api.personal-access-token",
+      "type": "java.lang.String",
+      "description": "The token you have generated that can be used to access the GitHub API."
+  }
+] }
