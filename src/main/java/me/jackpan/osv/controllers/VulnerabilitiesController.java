@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.Date;
 import java.time.ZonedDateTime;
 import java.util.Optional;
 
@@ -30,7 +29,6 @@ public class VulnerabilitiesController {
         Sort sort = Sort.by("updatedAt").descending();
         PageRequest pageRequest = PageRequest.of(page.orElse(0), size.orElse(10), sort);
         if (ecosystem.isPresent() && updatedSince.isPresent()) {
-
             return vulnerabilityRepository.findByPackageEcosystemAndUpdatedAtAfter(
                     ecosystem.get(),
                     ZonedDateTime.parse(updatedSince.get()),
@@ -38,6 +36,9 @@ public class VulnerabilitiesController {
         }
         if (ecosystem.isPresent()) {
             return vulnerabilityRepository.findByPackageEcosystem(ecosystem.get(), pageRequest);
+        }
+        if (updatedSince.isPresent()) {
+            return vulnerabilityRepository.findByUpdatedAtAfter(ZonedDateTime.parse(updatedSince.get()), pageRequest);
         }
         return vulnerabilityRepository.findAll(pageRequest);
     }

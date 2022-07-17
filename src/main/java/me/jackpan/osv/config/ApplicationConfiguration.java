@@ -4,7 +4,6 @@ import io.netty.resolver.DefaultAddressResolverGroup;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.graphql.client.HttpGraphQlClient;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -12,7 +11,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
 
 @Configuration
-@EnableJpaRepositories("me.jackpan.osv.repositories")
 @EnableScheduling
 public class ApplicationConfiguration {
     @Value(value = "${github.api.personal-access-token}")
